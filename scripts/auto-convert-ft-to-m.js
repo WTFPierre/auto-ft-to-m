@@ -13,7 +13,11 @@ Hooks.once("ready", () => {
         const converted = Math.round(distance * 0.3048 * 10) / 10;
         this.template.distance = converted;
         console.log(`Prévisualisation convertie : ${distance} ft → ${converted} m`);
+
+        // 🔄 Redessiner l'objet pour que la distance affichée soit mise à jour
+        this.template.object?.draw();
       }
+
       return originalDrawPreview.call(this);
     };
   }
