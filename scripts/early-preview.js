@@ -21,4 +21,3 @@ Hooks.once("ready", () => {
     };
   }
 });
-
