@@ -1,9 +1,10 @@
 {
+  "id": "auto-ft-to-m",
   "name": "auto_ft_to_m_converter",
   "title": "Auto Feet to Meters Converter",
-  "description": "Convertit automatiquement les distances en pieds (ft) en m\u00e8tres (m) pour les gabarits de sorts.",
+  "description": "Convertit automatiquement les distances en pieds (ft) en mètres (m) pour les gabarits de sorts.",
   "version": "1.0.0",
-  "author": "ChatGPT",
+  "author": "WTFPierre",
   "minimumCoreVersion": "10",
   "compatibleCoreVersion": "12",
   "scripts": [
@@ -13,7 +14,7 @@
   "styles": [],
   "packs": [],
   "languages": [],
-  "url": "https://github.com/",
-  "manifest": "https://github.com/module/auto-ft-to-m/module.json",
-  "download": "https://github.com/module/auto-ft-to-m/module.zip"
+  "url": "https://github.com/WTFPierre/auto-ft-to-m",
+  "manifest": "https://raw.githubusercontent.com/WTFPierre/auto-ft-to-m/main/module.json",
+  "download": "https://github.com/WTFPierre/auto-ft-to-m/archive/refs/heads/main.zip"
 }
