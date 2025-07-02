@@ -8,8 +8,7 @@
   "minimumCoreVersion": "10",
   "compatibleCoreVersion": "12",
   "scripts": [
-    "scripts/auto-convert-ft-to-m.js",
-    "scripts/early-preview.js"
+    "scripts/auto-convert-ft-to-m.js"
   ],
   "esmodules": [],
   "styles": [],
