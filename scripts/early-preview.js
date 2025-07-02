@@ -1,10 +1,9 @@
 Hooks.once("ready", () => {
-  console.log("HOOK EARLY LOADED"); // ← vérifie qu'il s'exécute
+  console.log("HOOK EARLY LOADED");
 
   const unit = canvas.scene.grid.units?.toLowerCase();
   if (!unit?.includes("m")) return;
 
-  // Patch AbilityTemplate.fromItem pour modifier la distance avant la preview
   if (game.dnd5e?.canvas?.AbilityTemplate) {
     const originalFromItem = game.dnd5e.canvas.AbilityTemplate.fromItem;
 
@@ -22,3 +21,4 @@ Hooks.once("ready", () => {
     };
   }
 });
+
