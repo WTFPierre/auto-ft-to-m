@@ -1,13 +1,30 @@
+// Conversion à la volée pendant la création ET la prévisualisation
+Hooks.once("ready", () => {
+  const unit = canvas.scene.grid.units?.toLowerCase();
+  if (!unit?.includes("m")) return;
 
-// Conversion automatique des distances en pieds vers mètres (1 ft = 0.3 m environ)
-Hooks.on("preCreateMeasuredTemplate", (template) => {
-  const original = template.distance;
-  const unit = canvas.scene.grid.units;
+  // Monkey patch : modifie drawPreview de AbilityTemplate
+  if (game.dnd5e?.canvas?.AbilityTemplate) {
+    const originalDrawPreview = game.dnd5e.canvas.AbilityTemplate.prototype.drawPreview;
 
-  // Si la scène utilise des mètres et que la distance semble être en pieds (valeur typique D&D5)
-  if (unit.toLowerCase().includes("m") && original > 1 && original <= 150) {
-    const converted = Math.round((original * 0.3048) * 10) / 10; // arrondi à 0.1 m
-    console.log(`Conversion automatique : ${original} ft → ${converted} m`);
-    template.updateSource({ distance: converted });
+    game.dnd5e.canvas.AbilityTemplate.prototype.drawPreview = function () {
+      const distance = this.template?.distance;
+      if (distance > 1 && distance <= 150) {
+        const converted = Math.round(distance * 0.3048 * 10) / 10;
+        this.template.distance = converted;
+        console.log(`Prévisualisation convertie : ${distance} ft → ${converted} m`);
+      }
+      return originalDrawPreview.call(this);
+    };
   }
+
+  // Conversion à la création finale
+  Hooks.on("preCreateMeasuredTemplate", (template) => {
+    const dist = template.distance;
+    if (dist > 1 && dist <= 150) {
+      const converted = Math.round(dist * 0.3048 * 10) / 10;
+      console.log(`Conversion finale : ${dist} ft → ${converted} m`);
+      template.updateSource({ distance: converted });
+    }
+  });
 });
