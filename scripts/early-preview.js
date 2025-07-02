@@ -1,3 +1,5 @@
+console.log(">>> early-preview.js CHARGÉ");
+
 Hooks.once("ready", () => {
   console.log("HOOK EARLY LOADED");
 
