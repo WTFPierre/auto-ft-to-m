@@ -1,4 +1,4 @@
-// Conversion dès la création ET pendant la prévisualisation (via patch fromItem)
+
 Hooks.on("ready", () => {
   const unit = canvas.scene.grid.units?.toLowerCase();
   if (!unit?.includes("m")) return;
