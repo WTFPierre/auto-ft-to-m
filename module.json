@@ -2,7 +2,7 @@
   "id": "auto-ft-to-m",
   "name": "auto_ft_to_m_converter",
   "title": "Auto Feet to Meters Converter",
-  "description": "Convertit automatiquement les distances en pieds (ft) en m\u00e8tres (m) pour les gabarits de sorts, avec conversion d\u00e8s la pr\u00e9visualisation.",
+  "description": "Convertit automatiquement les distances en pieds (ft) en metre",
   "version": "1.5.0",
   "author": "WTFPierre",
   "minimumCoreVersion": "10",
