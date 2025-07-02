@@ -1,24 +1,21 @@
-// Conversion à la volée pendant la création ET la prévisualisation
+// Conversion dès la création ET pendant la prévisualisation (via patch fromItem)
 Hooks.once("ready", () => {
   const unit = canvas.scene.grid.units?.toLowerCase();
   if (!unit?.includes("m")) return;
 
-  // Monkey patch : modifie drawPreview de AbilityTemplate
+  // Patch de fromItem pour agir avant même l'affichage du gabarit
   if (game.dnd5e?.canvas?.AbilityTemplate) {
-    const originalDrawPreview = game.dnd5e.canvas.AbilityTemplate.prototype.drawPreview;
+    const originalFromItem = game.dnd5e.canvas.AbilityTemplate.fromItem;
 
-    game.dnd5e.canvas.AbilityTemplate.prototype.drawPreview = function () {
-      const distance = this.template?.distance;
-      if (distance > 1 && distance <= 150) {
-        const converted = Math.round(distance * 0.3048 * 10) / 10;
-        this.template.distance = converted;
-        console.log(`Prévisualisation convertie : ${distance} ft → ${converted} m`);
-
-        // 🔄 Redessiner l'objet pour que la distance affichée soit mise à jour
-        this.template.object?.draw();
+    game.dnd5e.canvas.AbilityTemplate.fromItem = function (item, options = {}) {
+      const template = originalFromItem.call(this, item, options);
+      const dist = template?.distance;
+      if (dist > 1 && dist <= 150) {
+        const converted = Math.round(dist * 0.3048 * 10) / 10;
+        template.distance = converted;
+        console.log(`Conversion anticipée : ${dist} ft → ${converted} m`);
       }
-
-      return originalDrawPreview.call(this);
+      return template;
     };
   }
 
